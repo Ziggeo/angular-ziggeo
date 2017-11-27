@@ -1,19 +1,42 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
+    "baseUrl": ".",
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true,
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "emitDecoratorMetadata": true,
     "lib": [
-      "es2017",
+      "es2015",
       "dom"
-    ]
+    ],
+    "types": [
+      "node", "webpack"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "src/ziggeo/typings.d.ts"
+    ],
+    "paths": {
+      "@ziggeo/*": ["src/ziggeo/*"],
+      "@angular/core": ["node_modules/@angular/core"],
+      "rxjs/*": ["node_modules/rxjs/*"]
+    },
+    "rootDir": ".",
+    "outDir": "build",
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules", "demo", "dist", "build"
+  ],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true
   }
 }
