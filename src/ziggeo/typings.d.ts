@@ -6,12 +6,14 @@ interface NodeModule {
 }
 
 // ZiggeoApi
-declare const ZiggeoApi;
-interface ZiggeoApi {
-  V2: object;
+declare const ZiggeoApi: any;
+namespace ZiggeoApi {
+    // namespace V2 {}
+    export interface V2 {
+        Application: any;
+        Player: any;
+   }
 }
-// interface ZiggeoApi {
-//   V2.Application: object,
-//   V2.Player: object
-// }
-
+declare class Player {
+    activate: any;
+}
