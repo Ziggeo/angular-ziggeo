@@ -11,13 +11,18 @@
   "homepage": "https://ziggeo.com",
   "description": "Latest Angular component for Ziggeo App implementation",
   "scripts": {
-    "build": "npm run build:webpack",
-    "build:webpack": "webpack --config webpack.common.ts",
+    "build": "npm run build:umd",
+    "build:umd": "webpack --config webpack.common.ts",
+    "build:watch": "npm run build:umd -- --watch",
     "ng": "ng",
     "test": "ng test",
     "lint": "ng lint"
   },
   "private": false,
+  "engines": {
+    "node": ">=6.9.0",
+    "npm": ">=4.0.2"
+  },
   "peerDependencies": {
     "@angular/common": "^5.0.0",
     "@angular/core": "^5.0.0"

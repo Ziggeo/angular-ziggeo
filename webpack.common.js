@@ -57,7 +57,7 @@ exports.default = {
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                loader: 'file-loader',
+                loader: 'url-loader',
                 options: {
                     limit: 10000
                 }

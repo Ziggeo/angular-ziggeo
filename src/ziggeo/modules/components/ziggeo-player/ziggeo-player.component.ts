@@ -1,61 +1,56 @@
 import {
     Component,
-    OnInit,
-    AfterViewChecked,
+    DoCheck,
+    AfterViewInit,
     ViewChild,
-    ElementRef
+    Input,
+    OnDestroy
 } from '@angular/core';
+import { ZiggeoPlayerService } from './ziggeo-player.service';
 
 @Component({
     selector: 'ziggeo-player',
-    template: `<div #ziggeoplayer></div>`
+    providers: [ ZiggeoPlayerService ],
+    template: `<div #ziggeoplayer [apiKey]="apiKey" [options]="options"></div>`
 })
-export class ZiggeoPlayerComponent implements OnInit, AfterViewChecked {
+export class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, OnDestroy {
 
     @ViewChild('ziggeoplayer') ziggeoplayer;
-    ziggeoApplication: ZiggeoApi.V2;
-    // private elementRef: ElementRef;
-    private video = 'b2a4a22bd7aff2a38e2204954a2fcc73';
-    private apiKey = '18bc7c2cf9edb8693d3c1c54198599b1';
-    private application: object = null;
-    private player: object = null;
-    playerInstance: object = null;
+    @Input() options: any = {};
+    @Input() apiKey: string;
+    playerInstance: any;
+    private _events: any = {};
+    private _application: object = null;
 
-    // constructor () {}
-    constructor () {
-        this.ziggeoApplication = ZiggeoApi.V2;
-        // this.application = this.ziggeoApplication.Application.instanceByToken(this.apiKey);
-        // this.playerInstance = ZiggeoApi.V2.Player;
+    constructor (private _ziggeoPlayerService: ZiggeoPlayerService) {
+        this._events = _ziggeoPlayerService.getEvents();
     }
 
-    // constructor (elementRef: ElementRef, ziggeoApplication: ZiggeoApi.V2.Application) {
-    //     this.elementRef = this.elementRef;
-    //     this.ziggeoApplication = ziggeoApplication;
-    //     this.application = this.ziggeoApplication.instanceByToken(this.apiKey);
-    // }
+    ngDoCheck () {
+        console.log('options: ', this.options);
 
-    ngOnInit () {
-        this.application = this.ziggeoApplication.Application.instanceByToken(this.apiKey);
-        // this.application = this.ziggeoApi.V2.Application({
-        //     token: '18bc7c2cf9edb8693d3c1c54198599b1'
-        // });
-        this.player = new ZiggeoApi.V2.Player({
-            element: this.ziggeoplayer.nativeElement,
-            attrs: {
-                video: this.video,
-                width: 320,
-                height: 240,
-                forceflash: false
+        if (this.apiKey) {
+            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey);
+        }
+    }
+
+    ngAfterViewInit () {
+        if (this._application) {
+            this.playerInstance = new ZiggeoApi.V2.Player({
+                element: this.ziggeoplayer.nativeElement,
+                attrs: this.options
+            }, this);
+            if (typeof this.playerInstance.activate === 'function') {
+                this.playerInstance.activate();
+            } else {
+                console.warn('Issue with launching player');
             }
-        }).activate();
+        }
     }
 
-    ngAfterViewChecked () {
-        console.log('---::A');
-        // this.player.activate();
-        // this.application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey);
-
-        // console.log('ziggeo Api', ZiggeoApi.V2);
-        // this.player = new this.ziggeoApi.V2.Player({
+    ngOnDestroy () {
+        if (this.playerInstance && typeof this.playerInstance.destroy === 'function') {
+            this.playerInstance.destroy();
+        }
     }
 }
