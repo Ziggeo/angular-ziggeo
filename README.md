@@ -1,10 +1,11 @@
 ## Installation
 
-I'ts model container not application itself 
+I'ts model container not application itself
 - `npm run build` to build application inside.
 - `npm pack` will appear file with name `angular-ziggeo-1.0.0.tgz` in root folder
+- After for development you can run watch mode with `npm run build:watch`
 
-In demo folder run 
+In demo folder run
 - Install all dependencies `npm install`
 - Add pack to root folder `npm istall /path_to_this_folder/angular-ziggeo-1.0.0.tgz`
 - Remove folder from demo app `rm -rf node_modules/angular-ziggeo/build`

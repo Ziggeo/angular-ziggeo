@@ -27,9 +27,7 @@ export class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, OnDestroy 
     }
 
     ngDoCheck () {
-        console.log('options: ', this.options);
-
-        if (this.apiKey) {
+        if (this.apiKey && !this._application) {
             this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey);
         }
     }

@@ -28,7 +28,7 @@
     "@angular/core": "^5.0.0"
   },
   "dependencies": {
-    "ziggeo-client-sdk": "0.0.28"
+    "ziggeo-client-sdk": "0.0.29"
   },
   "devDependencies": {
     "@angular/core": "^5.0.0",

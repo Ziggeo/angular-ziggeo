@@ -8,8 +8,9 @@ interface NodeModule {
 // ZiggeoApi
 declare const ZiggeoApi: any;
 namespace ZiggeoApi {
-    export interface V2 {
+    interface V2 {
         Application: any;
         Player: any;
+        Recorder: any;
    }
 }
