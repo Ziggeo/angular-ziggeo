@@ -24,3 +24,5 @@ dist/
 build/
 docs
 tmp
+
+*.tgz
