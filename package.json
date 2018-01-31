@@ -1,6 +1,6 @@
 {
   "name": "angular-ziggeo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Ziggeo recorder and player, Angular 2, 4 & 5 integration ",
   "main": "./build/index.umd",
   "module": "./build/ziggeo/modules/ziggeo.module",
@@ -43,7 +43,7 @@
     "clean:all": "npm run clean:tmp && rimraf node_modules",
     "clean:tmp": "rimraf coverage dist tmp docs",
     "codecov": "cat coverage/lcov.info | codecov",
-    "docs": "compodoc -p tsconfig.json -d docs --disableCoverage --disablePrivateOrInternalSupport",
+    "docs": "compodoc -p tsconfig.json -d docs --disableCoverage",
     "explorer": "source-map-explorer ./dist/index.umd.js",
     "gh-pages": "rimraf docs && npm run docs && gh-pages -d docs",
     "lint": "npm run tslint 'src/**/*.ts'",
