@@ -52,7 +52,9 @@
     "preversion": "npm run ci",
     "tslint": "tslint"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ziggeo-client-sdk": "^0.0.30"
+  },
   "peerDependencies": {
     "@angular/common": ">=2.2.0 || >=4.2.6 || ^5.0.0",
     "@angular/core": ">=2.2.0 || >=4.2.6 || ^5.0.0",
@@ -93,7 +95,6 @@
     "webpack": "^3.6.0",
     "webpack-angular-externals": "^1.0.2",
     "webpack-rxjs-externals": "^1.0.0",
-    "ziggeo-client-sdk": "0.0.30",
     "zone.js": "^0.8.10"
   }
 }
