@@ -28,6 +28,7 @@ export class ZiggeoRecorderComponent implements DoCheck, AfterViewInit, OnDestro
     recorderInstance: any;
     private _application: object = null;
     private _events: any = {};
+    private _app_options: any = {};
 
     constructor (private _ziggeoRecorderService: ZiggeoRecorderService) {
         this._events = _ziggeoRecorderService.getEvents();
@@ -35,7 +36,15 @@ export class ZiggeoRecorderComponent implements DoCheck, AfterViewInit, OnDestro
 
     ngDoCheck () {
         if (this.apiKey && !this._application) {
-            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey);
+            if(this.options.allowscreen) {
+                this._app_options = {
+                    'chrome_extension_id': this.options.chrome_extension_id || 'meoefjkcilgjlkibnjjlfdgphacbeglk',
+                    'chrome_extension_install_link': this.options.chrome_extension_id || 'https://chrome.google.com/webstore/detail/meoefjkcilgjlkibnjjlfdgphacbeglk',
+                    'opera_extension_id': this.options.opera_extension_id || 'dnnolmnenehhgplebjhbcmfdbaabkepm',
+                    'opera_extension_install_link': this.options.opera_extension_install_link || 'https://addons.opera.com/en/extensions/details/3d46d4c36fefe97e76622c54b2eb6ea1d5406767'
+                }
+            }
+            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
         }
     }
 
