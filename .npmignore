@@ -26,3 +26,4 @@ tmp
 
 # Library files
 src/
+package-lock.json
