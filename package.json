@@ -23,6 +23,9 @@
     "Player",
     "recorder"
   ],
+  "files": [
+    "build"
+  ],
   "author": {
     "name": "Ziggeo Inc",
     "ulr": "https://ziggeo.com"
@@ -58,7 +61,7 @@
   "peerDependencies": {
     "@angular/common": ">=2.2.0 || >=4.2.6 || ^5.0.0",
     "@angular/core": ">=2.2.0 || >=4.2.6 || ^5.0.0",
-    "ziggeo-client-sdk": "^0.0.29"
+    "ziggeo-client-sdk": "^0.0.30"
   },
   "devDependencies": {
     "@angular/common": "^4.0.0",
