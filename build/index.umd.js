@@ -1,8 +1,8 @@
 /**
  * angular-ziggeo - Ziggeo recorder and player, Angular 2, 4 & 5 integration 
- * @version v0.1.0
+ * @version v0.1.2
  * @author Ziggeo Inc
- * @link https://github.com/Ziggeo/angular-ziggeo#readme
+ * @link https://ziggeo.com
  * @license Apache-2.0
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -92,6 +92,14 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 "use strict";
 
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -118,11 +126,19 @@ var ZiggeoRecorderComponent = /** @class */ (function () {
             if (this.options.allowscreen) {
                 this._app_options = {
                     'chrome_extension_id': this.options.chrome_extension_id || 'meoefjkcilgjlkibnjjlfdgphacbeglk',
-                    'chrome_extension_install_link': this.options.chrome_extension_id || 'https://chrome.google.com/webstore/detail/meoefjkcilgjlkibnjjlfdgphacbeglk',
+                    'chrome_extension_install_link': this.options.chrome_extension_install_link || 'https://chrome.google.com/webstore/detail/meoefjkcilgjlkibnjjlfdgphacbeglk',
                     'opera_extension_id': this.options.opera_extension_id || 'dnnolmnenehhgplebjhbcmfdbaabkepm',
                     'opera_extension_install_link': this.options.opera_extension_install_link || 'https://addons.opera.com/en/extensions/details/3d46d4c36fefe97e76622c54b2eb6ea1d5406767'
                 };
             }
+            if (this.options.webrtc_streaming) {
+                // (<any>Object).assign(this._app_options, { webrtc_streaming: true });
+                this._app_options = __assign({}, this._app_options, { webrtc_streaming: true });
+            }
+            if (this.options.l10n) {
+                ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
+            }
+            console.log('==>', this._app_options);
             this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
         }
     };
@@ -198,6 +214,9 @@ var ZiggeoPlayerComponent = /** @class */ (function () {
     }
     ZiggeoPlayerComponent.prototype.ngDoCheck = function () {
         if (this.apiKey && !this._application) {
+            if (this.options.l10n) {
+                ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
+            }
             this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey);
         }
     };
