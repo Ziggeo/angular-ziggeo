@@ -1,6 +1,6 @@
 {
   "name": "angular-ziggeo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Ziggeo recorder and player, Angular 2, 4 & 5 integration ",
   "main": "./build/index.umd",
   "module": "./build/ziggeo/modules/ziggeo.module",
@@ -30,7 +30,7 @@
     "name": "Ziggeo Inc",
     "ulr": "https://ziggeo.com"
   },
-  "homepage": "https://github.com/Ziggeo/angular-ziggeo#readme",
+  "homepage": "https://ziggeo.com",
   "license": "Apache-2.0",
   "scripts": {
     "build": "npm run build:esm && npm run build:umd",

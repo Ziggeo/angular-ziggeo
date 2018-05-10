@@ -10,6 +10,9 @@ var ZiggeoPlayerComponent = /** @class */ (function () {
     }
     ZiggeoPlayerComponent.prototype.ngDoCheck = function () {
         if (this.apiKey && !this._application) {
+            if (this.options.l10n) {
+                ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
+            }
             this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey);
         }
     };
