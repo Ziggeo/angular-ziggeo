@@ -37,15 +37,16 @@ See our working demos for [Angular 5](https://github.com/Ziggeo/angular-ziggeo-d
         chrome_extension_install_link: 'Your link to chrome extension installation',
         opera_extension_id: 'Your opera extension ID',
         opera_extension_install_link: 'Your link to opera extension installation'
-    ...}"```
+    ...}"
+    ```
 
-    Screen Capture is currently supported by Firefox, Chrome and Opera.
-    - Firefox: Direct support -- no extensions or plugins required
-    - Chrome + Opera: use extension builder located in your application manager
+    Screen Capture is currently supported by Firefox, Chrome and Opera. <br/>
+    - Firefox: Direct support -- no extensions or plugins required <br/>
+    - Chrome + Opera: use extension builder located in your application manager <br/>
 
-    Note: By default Ziggeo Chrome/Opera extension will be set to `Ziggeo screen recorder` extension which will be available only in `localhost`.
-    [For more info](https://ziggeo.com/features/screen-recording), in this url you also can find how to set your own extensions
+    Note: By default Ziggeo Chrome/Opera extension will be set to `Ziggeo screen recorder` extension which will be available only in `localhost`. <br/>
+    [For more info](https://ziggeo.com/features/screen-recording), in this url you also can find how to set your own extensions <br/>
 
 - v0.1.2
-    -- Add locale setting : `[options]="{ ..., l10n: 'de', ...}"`
+    -- Add locale setting : `[options]="{ ..., l10n: 'de', ...}"` <br/>
     -- Possibility set `webrtc_streaming` to `true` : `[options]="{ ..., webrtc_streaming: true, ...}"`
