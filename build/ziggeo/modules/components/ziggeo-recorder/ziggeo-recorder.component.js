@@ -31,10 +31,12 @@ var ZiggeoRecorderComponent = /** @class */ (function () {
                 // (<any>Object).assign(this._app_options, { webrtc_streaming: true });
                 this._app_options = __assign({}, this._app_options, { webrtc_streaming: true });
             }
+            if (this.options.auth) {
+                this._app_options = __assign({}, this._app_options, { auth: false });
+            }
             if (this.options.l10n) {
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
-            console.log('==>', this._app_options);
             this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
         }
     };

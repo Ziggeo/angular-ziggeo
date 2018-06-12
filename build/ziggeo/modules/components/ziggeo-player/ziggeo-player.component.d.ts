@@ -8,6 +8,7 @@ export declare class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, On
     playerInstance: any;
     private _events;
     private _application;
+    private _app_options;
     constructor(_ziggeoPlayerService: ZiggeoPlayerService);
     ngDoCheck(): void;
     ngAfterViewInit(): void;
