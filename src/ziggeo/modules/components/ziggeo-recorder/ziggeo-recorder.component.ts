@@ -50,6 +50,10 @@ export class ZiggeoRecorderComponent implements DoCheck, AfterViewInit, OnDestro
                 this._app_options = {...this._app_options, webrtc_streaming: true };
             }
 
+            if (this.options.auth) {
+                this._app_options = {...this._app_options, auth: false };
+            }
+
             if (this.options.l10n) {
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }

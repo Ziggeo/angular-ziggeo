@@ -47,6 +47,9 @@ See our working demos for [Angular 5](https://github.com/Ziggeo/angular-ziggeo-d
     Note: By default Ziggeo Chrome/Opera extension will be set to `Ziggeo screen recorder` extension which will be available only in `localhost`. <br/>
     [For more info](https://ziggeo.com/features/screen-recording), in this url you also can find how to set your own extensions <br/>
 
-- v0.1.2
+- v0.1.2 <br/>
     -- Add locale setting : `[options]="{ ..., l10n: 'de', ...}"` <br/>
     -- Possibility set `webrtc_streaming` to `true` : `[options]="{ ..., webrtc_streaming: true, ...}"`
+
+- v0.1.3 <br/>
+    -- Add Auth setting : `[options]="{ ..., auth: true, ...}"`, by default it's false <br/>

@@ -29,6 +29,7 @@ export class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, OnDestroy 
     playerInstance: any;
     private _events: any = {};
     private _application: object = null;
+    private _app_options: any = {};
 
     constructor (private _ziggeoPlayerService: ZiggeoPlayerService) {
         this._events = _ziggeoPlayerService.getEvents();
@@ -36,9 +37,15 @@ export class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, OnDestroy 
 
     ngDoCheck () {
         if (this.apiKey && !this._application) {
+
+            if (this.options.auth) {
+                this._app_options = {...this._app_options, auth: false };
+            }
+
             if (this.options.l10n) {
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
+
             this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey);
         }
     }
