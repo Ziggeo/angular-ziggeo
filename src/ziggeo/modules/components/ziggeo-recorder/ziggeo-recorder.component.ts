@@ -51,7 +51,7 @@ export class ZiggeoRecorderComponent implements DoCheck, AfterViewInit, OnDestro
             }
 
             if (this.options.auth) {
-                this._app_options = {...this._app_options, auth: false };
+                this._app_options = {...this._app_options, auth: this.options.auth};
             }
 
             if (this.options.l10n) {

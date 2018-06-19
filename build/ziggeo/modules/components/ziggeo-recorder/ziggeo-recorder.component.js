@@ -32,7 +32,7 @@ var ZiggeoRecorderComponent = /** @class */ (function () {
                 this._app_options = __assign({}, this._app_options, { webrtc_streaming: true });
             }
             if (this.options.auth) {
-                this._app_options = __assign({}, this._app_options, { auth: false });
+                this._app_options = __assign({}, this._app_options, { auth: this.options.auth });
             }
             if (this.options.l10n) {
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);

@@ -39,14 +39,15 @@ export class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, OnDestroy 
         if (this.apiKey && !this._application) {
 
             if (this.options.auth) {
-                this._app_options = {...this._app_options, auth: false };
+                // (<any>Object).assign(this._app_options, { auth: this.options.auth });
+                this._app_options = {...this._app_options, auth: this.options.auth};
             }
 
             if (this.options.l10n) {
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
 
-            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey);
+            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
         }
     }
 
