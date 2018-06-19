@@ -1,6 +1,6 @@
 /**
  * angular-ziggeo - Ziggeo recorder and player, Angular 2, 4 & 5 integration 
- * @version v0.1.3
+ * @version v0.1.4
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -136,7 +136,7 @@ var ZiggeoRecorderComponent = /** @class */ (function () {
                 this._app_options = __assign({}, this._app_options, { webrtc_streaming: true });
             }
             if (this.options.auth) {
-                this._app_options = __assign({}, this._app_options, { auth: false });
+                this._app_options = __assign({}, this._app_options, { auth: this.options.auth });
             }
             if (this.options.l10n) {
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
@@ -226,12 +226,13 @@ var ZiggeoPlayerComponent = /** @class */ (function () {
     ZiggeoPlayerComponent.prototype.ngDoCheck = function () {
         if (this.apiKey && !this._application) {
             if (this.options.auth) {
-                this._app_options = __assign({}, this._app_options, { auth: false });
+                // (<any>Object).assign(this._app_options, { auth: this.options.auth });
+                this._app_options = __assign({}, this._app_options, { auth: this.options.auth });
             }
             if (this.options.l10n) {
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
-            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey);
+            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
         }
     };
     ZiggeoPlayerComponent.prototype.ngAfterViewInit = function () {

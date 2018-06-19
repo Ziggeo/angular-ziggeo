@@ -1,6 +1,6 @@
 {
   "name": "angular-ziggeo",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Ziggeo recorder and player, Angular 2, 4 & 5 integration ",
   "main": "./build/index.umd",
   "module": "./build/ziggeo/modules/ziggeo.module",
