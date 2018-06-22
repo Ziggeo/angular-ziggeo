@@ -56,12 +56,12 @@
     "tslint": "tslint"
   },
   "dependencies": {
-    "ziggeo-client-sdk": "^0.0.30"
+    "ziggeo-client-sdk": "^2.32.1"
   },
   "peerDependencies": {
     "@angular/common": ">=2.2.0 || >=4.2.6 || ^5.0.0",
     "@angular/core": ">=2.2.0 || >=4.2.6 || ^5.0.0",
-    "ziggeo-client-sdk": "^0.0.31"
+    "ziggeo-client-sdk": "^2.31.2"
   },
   "devDependencies": {
     "@angular/common": "^4.0.0",

@@ -55,4 +55,4 @@ See our working demos for [Angular 5](https://github.com/Ziggeo/angular-ziggeo-d
     -- Add Auth setting : `[options]="{ ..., auth: true, ...}"`, by default it's false <br/>
 
 - v0.2.0 <br/>
-    -- Upgraded to `ziggeo-client-sdk@^0.0.31` <br/>
+    -- Upgraded to `ziggeo-client-sdk@^2.32.1` <br/>
