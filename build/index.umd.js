@@ -1,6 +1,6 @@
 /**
  * angular-ziggeo - Ziggeo recorder and player, Angular 2, 4 & 5 integration 
- * @version v0.1.4
+ * @version v0.2.0
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
