@@ -60,9 +60,9 @@ See our working demos for [Angular 5](https://github.com/Ziggeo/angular-ziggeo-d
 - v0.3.0 <br/>
     -- Downgraded to `ziggeo-client-sdk@^2.31.2` as `2.32.1` still not stable version, will upgrade later <br/>
 
-##Examples
+## Examples
 
-###Change text on your embedding
+### Change text on your embedding
 ```js
 ngOnInit () {
   ZiggeoApi.V2.Locale.mediaLocale.register({
