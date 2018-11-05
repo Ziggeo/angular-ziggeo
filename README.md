@@ -60,6 +60,9 @@ See our working demos for [Angular 5](https://github.com/Ziggeo/angular-ziggeo-d
 - v0.3.0 <br/>
     -- Downgraded to `ziggeo-client-sdk@^2.31.2` as `2.32.1` still not stable version, will upgrade later <br/>
 
+- v1.0.0 <br/>
+    -- Upgraded to `ziggeo-client-sdk@^2.32.*` to fix FireFox related bug <br/>
+
 ## Examples
 
 ### Change text on your embedding
