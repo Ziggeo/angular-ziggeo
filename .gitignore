@@ -25,4 +25,5 @@ docs
 tmp
 
 *.tgz
+*.lock
 package-lock.json
