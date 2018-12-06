@@ -6,11 +6,12 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild, Input, NgZone } from '@angular/core';
 import { ZiggeoPlayerService } from './ziggeo-player.service';
 var ZiggeoPlayerComponent = /** @class */ (function () {
-    function ZiggeoPlayerComponent(_ziggeoPlayerService) {
+    function ZiggeoPlayerComponent(_ziggeoPlayerService, ngZone) {
         this._ziggeoPlayerService = _ziggeoPlayerService;
+        this.ngZone = ngZone;
         this.options = {};
         this._events = {};
         this._application = null;
@@ -18,6 +19,7 @@ var ZiggeoPlayerComponent = /** @class */ (function () {
         this._events = _ziggeoPlayerService.getEvents();
     }
     ZiggeoPlayerComponent.prototype.ngDoCheck = function () {
+        var _this = this;
         if (this.apiKey && !this._application) {
             if (this.options.auth) {
                 // (<any>Object).assign(this._app_options, { auth: this.options.auth });
@@ -26,7 +28,9 @@ var ZiggeoPlayerComponent = /** @class */ (function () {
             if (this.options.l10n) {
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
-            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
+            this.ngZone.runOutsideAngular(function () {
+                _this._application = ZiggeoApi.V2.Application.instanceByToken(_this.apiKey, _this._app_options);
+            });
         }
     };
     ZiggeoPlayerComponent.prototype.ngAfterViewInit = function () {
@@ -58,6 +62,7 @@ var ZiggeoPlayerComponent = /** @class */ (function () {
     /** @nocollapse */
     ZiggeoPlayerComponent.ctorParameters = function () { return [
         { type: ZiggeoPlayerService, },
+        { type: NgZone, },
     ]; };
     ZiggeoPlayerComponent.propDecorators = {
         'ziggeoplayer': [{ type: ViewChild, args: ['ziggeoplayer',] },],

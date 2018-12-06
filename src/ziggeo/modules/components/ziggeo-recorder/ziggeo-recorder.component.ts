@@ -59,9 +59,9 @@ export class ZiggeoRecorderComponent implements DoCheck, AfterViewInit, OnDestro
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
 
-	    this.ngZone.runOutsideAngular(() => {
+            this.ngZone.runOutsideAngular(() => {
                 this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
-	    });
+            });
         }
     }
 

@@ -48,9 +48,9 @@ export class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, OnDestroy 
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
 
-	    this.ngZone.runOutsideAngular(() => {
-	        this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
-	    });
+            this.ngZone.runOutsideAngular(() => {
+                this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
+            });
         }
     }
 
