@@ -4,6 +4,7 @@ import {
     AfterViewInit,
     ViewChild,
     Input,
+    NgZone,
     OnDestroy
 } from '@angular/core';
 import { ZiggeoPlayerService } from './ziggeo-player.service';
@@ -31,7 +32,7 @@ export class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, OnDestroy 
     private _application: object = null;
     private _app_options: any = {};
 
-    constructor (private _ziggeoPlayerService: ZiggeoPlayerService) {
+    constructor (private _ziggeoPlayerService: ZiggeoPlayerService, private ngZone: NgZone) {
         this._events = _ziggeoPlayerService.getEvents();
     }
 
@@ -47,7 +48,9 @@ export class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, OnDestroy 
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
 
-            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
+	    this.ngZone.runOutsideAngular(() => {
+	        this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
+	    });
         }
     }
 

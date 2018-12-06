@@ -2,6 +2,7 @@ import {
     Component,
     DoCheck,
     AfterViewInit,
+    NgZone,
     OnDestroy,
     ViewChild,
     Input
@@ -30,7 +31,7 @@ export class ZiggeoRecorderComponent implements DoCheck, AfterViewInit, OnDestro
     private _events: any = {};
     private _app_options: any = {};
 
-    constructor (private _ziggeoRecorderService: ZiggeoRecorderService) {
+    constructor (private _ziggeoRecorderService: ZiggeoRecorderService, private ngZone: NgZone) {
         this._events = _ziggeoRecorderService.getEvents();
     }
 
@@ -58,7 +59,9 @@ export class ZiggeoRecorderComponent implements DoCheck, AfterViewInit, OnDestro
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
 
-            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
+	    this.ngZone.runOutsideAngular(() => {
+                this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
+	    });
         }
     }
 
