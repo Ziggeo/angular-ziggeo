@@ -6,11 +6,12 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, NgZone, ViewChild, Input } from '@angular/core';
 import { ZiggeoRecorderService } from './ziggeo-recorder.service';
 var ZiggeoRecorderComponent = /** @class */ (function () {
-    function ZiggeoRecorderComponent(_ziggeoRecorderService) {
+    function ZiggeoRecorderComponent(_ziggeoRecorderService, ngZone) {
         this._ziggeoRecorderService = _ziggeoRecorderService;
+        this.ngZone = ngZone;
         this.options = {};
         this._application = null;
         this._events = {};
@@ -18,6 +19,7 @@ var ZiggeoRecorderComponent = /** @class */ (function () {
         this._events = _ziggeoRecorderService.getEvents();
     }
     ZiggeoRecorderComponent.prototype.ngDoCheck = function () {
+        var _this = this;
         if (this.apiKey && !this._application) {
             if (this.options.allowscreen) {
                 this._app_options = {
@@ -37,7 +39,9 @@ var ZiggeoRecorderComponent = /** @class */ (function () {
             if (this.options.l10n) {
                 ZiggeoApi.V2.Locale.setLocale(this.options.l10n);
             }
-            this._application = ZiggeoApi.V2.Application.instanceByToken(this.apiKey, this._app_options);
+            this.ngZone.runOutsideAngular(function () {
+                _this._application = ZiggeoApi.V2.Application.instanceByToken(_this.apiKey, _this._app_options);
+            });
         }
     };
     ZiggeoRecorderComponent.prototype.ngAfterViewInit = function () {
@@ -69,6 +73,7 @@ var ZiggeoRecorderComponent = /** @class */ (function () {
     /** @nocollapse */
     ZiggeoRecorderComponent.ctorParameters = function () { return [
         { type: ZiggeoRecorderService, },
+        { type: NgZone, },
     ]; };
     ZiggeoRecorderComponent.propDecorators = {
         'ziggeorecorder': [{ type: ViewChild, args: ['ziggeorecorder',] },],
