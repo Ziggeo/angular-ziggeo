@@ -56,15 +56,17 @@ export class ZiggeoPlayerComponent implements DoCheck, AfterViewInit, OnDestroy 
 
     ngAfterViewInit () {
         if (this._application) {
-            this.playerInstance = new ZiggeoApi.V2.Player({
-                element: this.ziggeoplayer.nativeElement,
-                attrs: this.options
-            }, this);
-            if (typeof this.playerInstance.activate === 'function') {
-                this.playerInstance.activate();
-            } else {
-                console.warn('Issue with launching player');
-            }
+            this.ngZone.runOutsideAngular(() => {
+                this.playerInstance = new ZiggeoApi.V2.Player({
+                    element: this.ziggeoplayer.nativeElement,
+                    attrs: this.options
+                }, this);
+                if (typeof this.playerInstance.activate === 'function') {
+                    this.playerInstance.activate();
+                } else {
+                    console.warn('Issue with launching player');
+                }
+            });
         }
     }
 

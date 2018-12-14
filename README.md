@@ -67,6 +67,9 @@ See our working demos for [Angular 5](https://github.com/Ziggeo/angular-ziggeo-d
     1. Upgraded to `ziggeo-client-sdk@^2.33.*` <br/>
     2. Took Ziggeo initialization out of Angular Zone
     <br/>
+- v2.1.0 <br/>
+    1. Took Ziggeo Instance also out of Angular Ziggeo
+    <br/>
 
 ## Examples
 

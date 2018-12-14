@@ -67,15 +67,17 @@ export class ZiggeoRecorderComponent implements DoCheck, AfterViewInit, OnDestro
 
     ngAfterViewInit () {
         if (this._application) {
-            this.recorderInstance = new ZiggeoApi.V2.Recorder({
-                element: this.ziggeorecorder.nativeElement,
-                attrs: this.options
-            }, this);
-            if (typeof this.recorderInstance.activate === 'function') {
-                this.recorderInstance.activate();
-            } else {
-                console.warn('Issue with launching recorder with Angular');
-            }
+            this.ngZone.runOutsideAngular(() => {
+                this.recorderInstance = new ZiggeoApi.V2.Recorder({
+                    element: this.ziggeorecorder.nativeElement,
+                    attrs: this.options
+                }, this);
+                if (typeof this.recorderInstance.activate === 'function') {
+                    this.recorderInstance.activate();
+                } else {
+                    console.warn('Issue with launching recorder with Angular');
+                }
+            });
         }
     }
 
