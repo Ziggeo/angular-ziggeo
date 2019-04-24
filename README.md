@@ -1,14 +1,14 @@
-## Ziggeo Angular for Angular 2-5
+## Ziggeo Angular for Angular 2-7
 
 #### Setup
-- Install all peerDependencies (Angular) including `ziggeo-client-sdk`.
+- Install all peerDependencies (Angular).  No need for `ziggeo-client-sdk` as it's already a dependency of this package.
 - Install all dependencies via `npm install`
 - For UMD use, you can include `ZiggeoModule` from `ziggeo-angular` package directly.
   Example: `import {ZiggeoModule} from 'angular-ziggeo'`
 - For `AOT` ready need to include directly from path.
   Example: `import { ZiggeoModule } from 'root_path/node_modules/angular-ziggeo/build/ziggeo/index'`
 
-- For production and AOT mode (starting from Angular 5), add to `.angular-cli.json`:
+- For production and AOT mode (starting from Angular 5), add to `.angular-cli.json` or `angular.json`:
 ```json
       "styles": [
         "../node_modules/ziggeo-client-sdk/build/ziggeo.css"
