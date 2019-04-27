@@ -34,17 +34,20 @@ var ZiggeoPlayerComponent = /** @class */ (function () {
         }
     };
     ZiggeoPlayerComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
         if (this._application) {
-            this.playerInstance = new ZiggeoApi.V2.Player({
-                element: this.ziggeoplayer.nativeElement,
-                attrs: this.options
-            }, this);
-            if (typeof this.playerInstance.activate === 'function') {
-                this.playerInstance.activate();
-            }
-            else {
-                console.warn('Issue with launching player');
-            }
+            this.ngZone.runOutsideAngular(function () {
+                _this.playerInstance = new ZiggeoApi.V2.Player({
+                    element: _this.ziggeoplayer.nativeElement,
+                    attrs: _this.options
+                }, _this);
+                if (typeof _this.playerInstance.activate === 'function') {
+                    _this.playerInstance.activate();
+                }
+                else {
+                    console.warn('Issue with launching player');
+                }
+            });
         }
     };
     ZiggeoPlayerComponent.prototype.ngOnDestroy = function () {

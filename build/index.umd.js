@@ -1,6 +1,6 @@
 /**
  * angular-ziggeo - Ziggeo recorder and player, Angular 2, 4 & 5 integration 
- * @version v1.1.0
+ * @version v2.1.0
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -149,17 +149,20 @@ var ZiggeoRecorderComponent = /** @class */ (function () {
         }
     };
     ZiggeoRecorderComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
         if (this._application) {
-            this.recorderInstance = new ZiggeoApi.V2.Recorder({
-                element: this.ziggeorecorder.nativeElement,
-                attrs: this.options
-            }, this);
-            if (typeof this.recorderInstance.activate === 'function') {
-                this.recorderInstance.activate();
-            }
-            else {
-                console.warn('Issue with launching recorder with Angular');
-            }
+            this.ngZone.runOutsideAngular(function () {
+                _this.recorderInstance = new ZiggeoApi.V2.Recorder({
+                    element: _this.ziggeorecorder.nativeElement,
+                    attrs: _this.options
+                }, _this);
+                if (typeof _this.recorderInstance.activate === 'function') {
+                    _this.recorderInstance.activate();
+                }
+                else {
+                    console.warn('Issue with launching recorder with Angular');
+                }
+            });
         }
     };
     ZiggeoRecorderComponent.prototype.ngOnDestroy = function () {
@@ -244,17 +247,20 @@ var ZiggeoPlayerComponent = /** @class */ (function () {
         }
     };
     ZiggeoPlayerComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
         if (this._application) {
-            this.playerInstance = new ZiggeoApi.V2.Player({
-                element: this.ziggeoplayer.nativeElement,
-                attrs: this.options
-            }, this);
-            if (typeof this.playerInstance.activate === 'function') {
-                this.playerInstance.activate();
-            }
-            else {
-                console.warn('Issue with launching player');
-            }
+            this.ngZone.runOutsideAngular(function () {
+                _this.playerInstance = new ZiggeoApi.V2.Player({
+                    element: _this.ziggeoplayer.nativeElement,
+                    attrs: _this.options
+                }, _this);
+                if (typeof _this.playerInstance.activate === 'function') {
+                    _this.playerInstance.activate();
+                }
+                else {
+                    console.warn('Issue with launching player');
+                }
+            });
         }
     };
     ZiggeoPlayerComponent.prototype.ngOnDestroy = function () {

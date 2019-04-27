@@ -45,17 +45,20 @@ var ZiggeoRecorderComponent = /** @class */ (function () {
         }
     };
     ZiggeoRecorderComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
         if (this._application) {
-            this.recorderInstance = new ZiggeoApi.V2.Recorder({
-                element: this.ziggeorecorder.nativeElement,
-                attrs: this.options
-            }, this);
-            if (typeof this.recorderInstance.activate === 'function') {
-                this.recorderInstance.activate();
-            }
-            else {
-                console.warn('Issue with launching recorder with Angular');
-            }
+            this.ngZone.runOutsideAngular(function () {
+                _this.recorderInstance = new ZiggeoApi.V2.Recorder({
+                    element: _this.ziggeorecorder.nativeElement,
+                    attrs: _this.options
+                }, _this);
+                if (typeof _this.recorderInstance.activate === 'function') {
+                    _this.recorderInstance.activate();
+                }
+                else {
+                    console.warn('Issue with launching recorder with Angular');
+                }
+            });
         }
     };
     ZiggeoRecorderComponent.prototype.ngOnDestroy = function () {
