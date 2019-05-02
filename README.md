@@ -28,6 +28,34 @@ See our working demos for [Angular 5](https://github.com/Ziggeo/angular-ziggeo-d
 [Angular 2+4](https://github.com/Ziggeo/angular2-ziggeo-demo).
 
 ### CHANGE LOGS
+## Change logs:
+
+- v2.2.2 <br/>
+    Added missing header configurations:
+     `webrtc_on_mobile`, `webrtc_streaming_if_necessary`, `debug` and `google_analytics`
+    <br/>
+    Example: `[options]="{'webrtc_streaming_if_necessary': true}"`
+- v2.1.0 <br/>
+    1. Took Ziggeo Instance also out of Angular Ziggeo
+    <br/>
+- v2.0.0 <br/>
+    1. Upgraded to `ziggeo-client-sdk@^2.33.*` <br/>
+    2. Took Ziggeo initialization out of Angular Zone
+    <br/>
+- v1.0.0 <br/>
+    -- Upgraded to `ziggeo-client-sdk@^2.32.*` to fix FireFox related bug <br/>
+- v0.3.0 <br/>
+    -- Downgraded to `ziggeo-client-sdk@^2.31.2` as `2.32.1` still not stable version, will upgrade later <br/>
+- v0.2.0 <br/>
+    -- Upgraded to `ziggeo-client-sdk@^2.32.1` <br/>
+
+- v0.1.3 <br/>
+    -- Add Auth setting : `[options]="{ ..., auth: true, ...}"`, by default it's false <br/>
+
+- v0.1.2 <br/>
+    -- Add locale setting : `[options]="{ ..., l10n: 'de', ...}"` <br/>
+    -- Possibility set `webrtc_streaming` to `true` : `[options]="{ ..., webrtc_streaming: true, ...}"`
+
 - v0.1.1
     -- Added screen recorder options:
     ```
@@ -47,29 +75,6 @@ See our working demos for [Angular 5](https://github.com/Ziggeo/angular-ziggeo-d
     Note: By default Ziggeo Chrome/Opera extension will be set to `Ziggeo screen recorder` extension which will be available only in `localhost`. <br/>
     [For more info](https://ziggeo.com/features/screen-recording), in this url you also can find how to set your own extensions <br/>
 
-- v0.1.2 <br/>
-    -- Add locale setting : `[options]="{ ..., l10n: 'de', ...}"` <br/>
-    -- Possibility set `webrtc_streaming` to `true` : `[options]="{ ..., webrtc_streaming: true, ...}"`
-
-- v0.1.3 <br/>
-    -- Add Auth setting : `[options]="{ ..., auth: true, ...}"`, by default it's false <br/>
-
-- v0.2.0 <br/>
-    -- Upgraded to `ziggeo-client-sdk@^2.32.1` <br/>
-
-- v0.3.0 <br/>
-    -- Downgraded to `ziggeo-client-sdk@^2.31.2` as `2.32.1` still not stable version, will upgrade later <br/>
-
-- v1.0.0 <br/>
-    -- Upgraded to `ziggeo-client-sdk@^2.32.*` to fix FireFox related bug <br/>
-
-- v2.0.0 <br/>
-    1. Upgraded to `ziggeo-client-sdk@^2.33.*` <br/>
-    2. Took Ziggeo initialization out of Angular Zone
-    <br/>
-- v2.1.0 <br/>
-    1. Took Ziggeo Instance also out of Angular Ziggeo
-    <br/>
 
 ## Examples
 
