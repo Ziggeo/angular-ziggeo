@@ -1,6 +1,6 @@
 {
   "name": "angular-ziggeo",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Ziggeo recorder and player, Angular 2, 4 & 5 integration ",
   "main": "./build/index.umd",
   "module": "./build/ziggeo/modules/ziggeo.module",
@@ -55,6 +55,9 @@
     "preversion": "npm run ci",
     "tslint": "tslint"
   },
+  "dependencies": {
+    "ziggeo-client-sdk": "^2.34.14"
+  },
   "peerDependencies": {
     "@angular/common": ">=2.2.0 || >=4.2.6 || ^5.0.0",
     "@angular/core": ">=2.2.0 || >=4.2.6 || ^5.0.0"
@@ -94,7 +97,6 @@
     "webpack": "^3.6.0",
     "webpack-angular-externals": "^1.0.2",
     "webpack-rxjs-externals": "^1.0.0",
-    "zone.js": "^0.8.29",
-    "ziggeo-client-sdk": "^2.34.14"
+    "zone.js": "^0.8.29"
   }
 }
