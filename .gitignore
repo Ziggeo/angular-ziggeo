@@ -27,3 +27,4 @@ tmp
 *.tgz
 *.lock
 package-lock.json
+yarn.lock

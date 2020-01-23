@@ -30,6 +30,8 @@ See our working demos for [Angular 5](https://github.com/Ziggeo/angular-ziggeo-d
 ### CHANGE LOGS
 ## Change logs:
 
+- v2.3.0 <br/>
+    -- Upgraded to `ziggeo-client-sdk@2.34.14` to fix FireFox related bug <br/>
 - v2.2.2 <br/>
     Added missing header configurations:
      `webrtc_on_mobile`, `webrtc_streaming_if_necessary`, `debug` and `google_analytics`
