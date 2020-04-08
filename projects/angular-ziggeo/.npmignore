@@ -1,0 +1,3 @@
+# To be able include dist/ folder as .gitignore will not allow create
+# package based on dist/ folder, as it's git-ignored folder.
+.yarn-error
