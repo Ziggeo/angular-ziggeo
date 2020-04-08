@@ -23,12 +23,10 @@
   "bugs": {
     "url": "https://github.com/Ziggeo/angular-ziggeo/issues"
   },
-  "dependencies": {
-    "ziggeo-client-sdk": "^2.35.8"
-  },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0"
+    "@angular/core": "^9.0.0",
+    "ziggeo-client-sdk": "^2.35.8"
   },
   "ngPackage": {
     "lib": {
