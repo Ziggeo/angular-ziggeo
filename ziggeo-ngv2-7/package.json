@@ -1,0 +1,102 @@
+{
+  "name": "angular-ziggeo",
+  "version": "2.3.1",
+  "description": "Ziggeo recorder and player, Angular 2, 4 & 5 integration ",
+  "main": "./build/index.umd",
+  "module": "./build/ziggeo/modules/ziggeo.module",
+  "typings": "./build/ziggeo/types.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ziggeo/angular-ziggeo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ziggeo/angular-ziggeo/issues"
+  },
+  "keywords": [
+    "Ziggeo",
+    "Angular-2",
+    "Angular-4",
+    "Angular-5",
+    "4",
+    "Ziggeo Player",
+    "Ziggeo Recorder",
+    "Player",
+    "recorder"
+  ],
+  "files": [
+    "build"
+  ],
+  "author": {
+    "name": "Ziggeo Inc",
+    "ulr": "https://ziggeo.com"
+  },
+  "homepage": "https://ziggeo.com",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "npm run build:esm && npm run build:umd",
+    "build:esm": "gulp inline-templates && npm run ngcompile",
+    "build:esm:watch": "gulp build:esm:watch",
+    "build:umd": "webpack --config webpack-umd.config.ts",
+    "build:umd:watch": "npm run build:umd -- --watch",
+    "build:watch": "concurrently --raw \"npm run build:umd:watch\" \"npm run build:esm:watch\"",
+    "ci": "npm run lint && npm run test && npm run build && npm run docs",
+    "clean:all": "npm run clean:tmp && rimraf node_modules",
+    "clean:tmp": "rimraf coverage dist tmp docs",
+    "codecov": "cat coverage/lcov.info | codecov",
+    "docs": "compodoc -p tsconfig.json -d docs --disableCoverage",
+    "explorer": "source-map-explorer ./dist/index.umd.js",
+    "gh-pages": "rimraf docs && npm run docs && gh-pages -d docs",
+    "lint": "npm run tslint 'src/**/*.ts'",
+    "ngcompile": "node_modules/.bin/ngc -p tsconfig-aot.json",
+    "postversion": "git push && git push --tags",
+    "prebuild": "rimraf dist tmp",
+    "prebuild:watch": "rimraf dist tmp",
+    "prepublishOnly": "npm run ci",
+    "preversion": "npm run ci",
+    "tslint": "tslint"
+  },
+  "dependencies": {
+    "ziggeo-client-sdk": "^2.34.14"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=2.2.0 || >=4.2.6 || ^5.0.0",
+    "@angular/core": ">=2.2.0 || >=4.2.6 || ^5.0.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@compodoc/compodoc": "^1.1.9",
+    "@types/node": "^8.10.47",
+    "@types/webpack": "^3.8.18",
+    "@types/webpack-env": "^1.13.9",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^3.1.3",
+    "codecov": "^2.2.0",
+    "codelyzer": "^3.0.1",
+    "concurrently": "^3.4.0",
+    "css-loader": "^0.28.1",
+    "file-loader": "^1.1.5",
+    "gh-pages": "^1.0.0",
+    "gulp": "^3.9.1",
+    "gulp-inline-ng2-template": "^5.0.0",
+    "json-loader": "^0.5.4",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.6.3",
+    "rxjs": "^5.3.1",
+    "source-map-explorer": "^1.8.0",
+    "style-loader": "^0.19.0",
+    "to-string-loader": "^1.1.5",
+    "ts-node": "^3.0.4",
+    "tslint": "^5.16.0",
+    "typescript": "^2.3.2",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.6.0",
+    "webpack-angular-externals": "^1.0.2",
+    "webpack-rxjs-externals": "^1.0.0",
+    "zone.js": "^0.8.29"
+  }
+}

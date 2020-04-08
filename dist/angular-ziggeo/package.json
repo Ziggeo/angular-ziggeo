@@ -1,0 +1,42 @@
+{
+  "name": "angular-ziggeo",
+  "version": "3.0.0",
+  "description": "Ziggeo recorder and player, Angular 9 and higher version integration.",
+  "keywords": [
+    "Ziggeo",
+    "Angular-8",
+    "Ziggeo Player",
+    "Ziggeo Recorder",
+    "player",
+    "recorder"
+  ],
+  "author": {
+    "name": "Ziggeo Inc",
+    "ulr": "https://ziggeo.com"
+  },
+  "license": "Apache-2.0MIT",
+  "homepage": "https://ziggeo.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ziggeo/angular-ziggeo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ziggeo/angular-ziggeo/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "ziggeo-client-sdk": "^2.35.8",
+    "tslib": "^1.10.0"
+  },
+  "main": "bundles/angular-ziggeo.umd.js",
+  "module": "fesm5/angular-ziggeo.js",
+  "es2015": "fesm2015/angular-ziggeo.js",
+  "esm5": "esm5/angular-ziggeo.js",
+  "esm2015": "esm2015/angular-ziggeo.js",
+  "fesm5": "fesm5/angular-ziggeo.js",
+  "fesm2015": "fesm2015/angular-ziggeo.js",
+  "typings": "angular-ziggeo.d.ts",
+  "metadata": "angular-ziggeo.metadata.json",
+  "sideEffects": false
+}

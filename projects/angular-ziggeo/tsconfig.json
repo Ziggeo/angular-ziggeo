@@ -1,0 +1,27 @@
+{
+  "extends": "./../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist",
+    "target": "es2015",
+    "declaration": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "types": [
+      "jasmine",
+      "node"
+    ],
+    "lib": [
+      "dom",
+      "es2018"
+    ]
+  },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}
