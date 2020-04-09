@@ -4,4 +4,4 @@
 - Please check also [`angular.json`](https://github.com/Ziggeo/angular-ziggeo/blob/master/angular.json#L65) 
 file you need to import `ziggeo-clinet-sdk` assets.
 - Replace inside components html files `ZIGGEO_API_KEY` with your own keys.
-- And strate the server `ng serve`.
+- And start the server `ng serve`.
