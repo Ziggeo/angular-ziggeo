@@ -260,9 +260,260 @@ ZiggeoRecorderModule = __decorate([
     })
 ], ZiggeoRecorderModule);
 
+let ZiggeoAudioPlayerConfig = class ZiggeoAudioPlayerConfig {
+    constructor() {
+        this.debug = false;
+    }
+};
+ZiggeoAudioPlayerConfig.ɵprov = ɵɵdefineInjectable({ factory: function ZiggeoAudioPlayerConfig_Factory() { return new ZiggeoAudioPlayerConfig(); }, token: ZiggeoAudioPlayerConfig, providedIn: "root" });
+ZiggeoAudioPlayerConfig = __decorate([
+    Injectable({ providedIn: 'root' })
+], ZiggeoAudioPlayerConfig);
+
+let ZiggeoAudioPlayerDirective = class ZiggeoAudioPlayerDirective {
+    constructor(element, renderer, ngZone, config) {
+        this.element = element;
+        this.renderer = renderer;
+        this.ngZone = ngZone;
+        this.config = config;
+        this._application = null;
+        this._appOptions = {};
+        this._app_options = {};
+        this._element = this.element.nativeElement;
+    }
+    ngDoCheck() {
+        const apiKey = `${this.apiKey}`;
+        const options = this.options;
+        if (apiKey && !this._application) {
+            if (options) {
+                for (const [key, value] of Object.entries(this.config)) {
+                    if (options[key] !== undefined && typeof options[key] === typeof value) {
+                        this._appOptions[key] = options[key];
+                    }
+                }
+                if (options.l10n) {
+                    ZiggeoApi.V2.Locale.setLocale(options.l10n);
+                }
+            }
+            this.ngZone.runOutsideAngular(() => {
+                this._application = ZiggeoApi.V2.Application.instanceByToken(apiKey, this._app_options);
+            });
+        }
+    }
+    ngAfterViewInit() {
+        if (this._application) {
+            this.ngZone.runOutsideAngular(() => {
+                // Prevent during every change detection run ngDoCheck method
+                this.audioPlayerInstance = new ZiggeoApi.V2.AudioPlayer({
+                    element: this._element,
+                    attrs: this.options
+                }, this);
+                if (typeof this.audioPlayerInstance.activate === 'function') {
+                    this.audioPlayerInstance.activate();
+                }
+                else {
+                    console.warn('Issue with launching audio player with Angular');
+                }
+            });
+        }
+    }
+    ngOnDestroy() {
+        if (this.audioPlayerInstance && typeof this.audioPlayerInstance.destroy === 'function') {
+            this.audioPlayerInstance.destroy();
+        }
+    }
+};
+ZiggeoAudioPlayerDirective.ctorParameters = () => [
+    { type: ElementRef },
+    { type: Renderer2 },
+    { type: NgZone },
+    { type: ZiggeoAudioPlayerConfig }
+];
+__decorate([
+    Input()
+], ZiggeoAudioPlayerDirective.prototype, "apiKey", void 0);
+__decorate([
+    Input()
+], ZiggeoAudioPlayerDirective.prototype, "options", void 0);
+__decorate([
+    Output()
+], ZiggeoAudioPlayerDirective.prototype, "audioPlayerInstance", void 0);
+ZiggeoAudioPlayerDirective = __decorate([
+    Directive({
+        selector: 'ziggeoaudioplayer, ziggeo-audio-player[apiKey], ziggeo-audio-player[options]'
+    })
+], ZiggeoAudioPlayerDirective);
+
+/**
+ * ZiggeoAudioPlayer
+ */
+let ZiggeoAudioPlayerComponent = class ZiggeoAudioPlayerComponent {
+    constructor(audioPlayer) {
+        this.audioPlayer = audioPlayer;
+    }
+};
+ZiggeoAudioPlayerComponent.ctorParameters = () => [
+    { type: ZiggeoAudioPlayerDirective }
+];
+ZiggeoAudioPlayerComponent.ɵprov = ɵɵdefineInjectable({ factory: function ZiggeoAudioPlayerComponent_Factory() { return new ZiggeoAudioPlayerComponent(ɵɵinject(ZiggeoAudioPlayerDirective)); }, token: ZiggeoAudioPlayerComponent, providedIn: "root" });
+ZiggeoAudioPlayerComponent = __decorate([
+    Injectable({ providedIn: 'root' }),
+    Component({
+        selector: 'ziggeo-audio-player',
+        // TODO: check the same in player why #selector is missing
+        template: `<div #ziggeoaudioplayer></div>`
+    })
+], ZiggeoAudioPlayerComponent);
+
+let ZiggeoAudioPlayerModule = class ZiggeoAudioPlayerModule {
+};
+ZiggeoAudioPlayerModule = __decorate([
+    NgModule({
+        declarations: [
+            ZiggeoAudioPlayerComponent,
+            ZiggeoAudioPlayerDirective
+        ],
+        exports: [
+            ZiggeoAudioPlayerComponent,
+            ZiggeoAudioPlayerDirective
+        ],
+        providers: []
+    })
+], ZiggeoAudioPlayerModule);
+
+let ZiggeoAudioRecorderConfig = class ZiggeoAudioRecorderConfig {
+    constructor() {
+        this.webrtc_streaming = false;
+        this.webrtc_streaming_if_necessary = false;
+        this.webrtc_on_mobile = false;
+        this.debug = false;
+    }
+};
+ZiggeoAudioRecorderConfig.ɵprov = ɵɵdefineInjectable({ factory: function ZiggeoAudioRecorderConfig_Factory() { return new ZiggeoAudioRecorderConfig(); }, token: ZiggeoAudioRecorderConfig, providedIn: "root" });
+ZiggeoAudioRecorderConfig = __decorate([
+    Injectable({ providedIn: 'root' })
+], ZiggeoAudioRecorderConfig);
+
+let ZiggeoAudioRecorderDirective = class ZiggeoAudioRecorderDirective {
+    constructor(element, renderer, ngZone, config) {
+        this.element = element;
+        this.renderer = renderer;
+        this.ngZone = ngZone;
+        this.config = config;
+        this._application = null;
+        this._appOptions = {};
+        this.config = config;
+        this._element = this.element.nativeElement;
+    }
+    ngDoCheck() {
+        const apiKey = `${this.apiKey}`;
+        const options = this.options;
+        if (apiKey && !this._application) {
+            if (options) {
+                for (const [key, value] of Object.entries(this.config)) {
+                    if (options[key] !== undefined && typeof options[key] === typeof value) {
+                        this._appOptions[key] = options[key];
+                    }
+                    else if (typeof this.config[key] !== 'undefined') {
+                        // Set default values
+                        this._appOptions[key] = this.config[key];
+                    }
+                }
+                if (options.l10n) {
+                    ZiggeoApi.V2.Locale.setLocale(options.l10n);
+                }
+            }
+            this.ngZone.runOutsideAngular(() => {
+                this._application = ZiggeoApi.V2.Application.instanceByToken(apiKey, this._appOptions);
+            });
+        }
+    }
+    ngAfterViewInit() {
+        if (this._application) {
+            this.ngZone.runOutsideAngular(() => {
+                // Prevent during every change detection run ngDoCheck method
+                this.audioRecorderInstance = new ZiggeoApi.V2.AudioRecorder({
+                    element: this._element,
+                    attrs: this.options
+                }, this);
+                if (typeof this.audioRecorderInstance.activate === 'function') {
+                    this.audioRecorderInstance.activate();
+                }
+                else {
+                    console.warn('Issue with launching audio recorder with Angular');
+                }
+            });
+        }
+    }
+    ngOnDestroy() {
+        if (this.audioRecorderInstance && typeof this.audioRecorderInstance.destroy === 'function') {
+            this.audioRecorderInstance.destroy();
+        }
+    }
+};
+ZiggeoAudioRecorderDirective.ctorParameters = () => [
+    { type: ElementRef },
+    { type: Renderer2 },
+    { type: NgZone },
+    { type: ZiggeoAudioRecorderConfig }
+];
+__decorate([
+    Input()
+], ZiggeoAudioRecorderDirective.prototype, "apiKey", void 0);
+__decorate([
+    Input()
+], ZiggeoAudioRecorderDirective.prototype, "options", void 0);
+__decorate([
+    Output()
+], ZiggeoAudioRecorderDirective.prototype, "audioRecorderInstance", void 0);
+ZiggeoAudioRecorderDirective = __decorate([
+    Directive({
+        exportAs: 'ziggeoaudiorecorder',
+        selector: 'ziggeoaudiorecorder, ziggeo-audio-recorder[apiKey], ziggeo-audio-recorder[options]'
+    })
+], ZiggeoAudioRecorderDirective);
+
+/**
+ * ZiggeoRecorder
+ */
+let ZiggeoAudioRecorderComponent = class ZiggeoAudioRecorderComponent {
+    constructor(audioRecorder) {
+        this.audioRecorder = audioRecorder;
+    }
+};
+ZiggeoAudioRecorderComponent.ctorParameters = () => [
+    { type: ZiggeoAudioRecorderDirective }
+];
+ZiggeoAudioRecorderComponent.ɵprov = ɵɵdefineInjectable({ factory: function ZiggeoAudioRecorderComponent_Factory() { return new ZiggeoAudioRecorderComponent(ɵɵinject(ZiggeoAudioRecorderDirective)); }, token: ZiggeoAudioRecorderComponent, providedIn: "root" });
+ZiggeoAudioRecorderComponent = __decorate([
+    Injectable({ providedIn: 'root' }),
+    Component({
+        selector: 'ziggeo-audio-recorder',
+        template: `<div #ziggeoaudiorecorder ></div>`
+    })
+], ZiggeoAudioRecorderComponent);
+
+let ZiggeoAudioRecorderModule = class ZiggeoAudioRecorderModule {
+};
+ZiggeoAudioRecorderModule = __decorate([
+    NgModule({
+        declarations: [
+            ZiggeoAudioRecorderComponent,
+            ZiggeoAudioRecorderDirective
+        ],
+        exports: [
+            ZiggeoAudioRecorderComponent,
+            ZiggeoAudioRecorderDirective
+        ],
+        providers: []
+    })
+], ZiggeoAudioRecorderModule);
+
 const ZIGGEO_MODULES = [
     ZiggeoPlayerModule,
-    ZiggeoRecorderModule
+    ZiggeoRecorderModule,
+    ZiggeoAudioPlayerModule,
+    ZiggeoAudioRecorderModule,
 ];
 let ZiggeoModule = class ZiggeoModule {
 };
@@ -276,5 +527,5 @@ ZiggeoModule = __decorate([
  * Generated bundle index. Do not edit.
  */
 
-export { ZiggeoModule, ZiggeoPlayerComponent, ZiggeoPlayerDirective, ZiggeoPlayerModule, ZiggeoRecorderComponent, ZiggeoRecorderDirective, ZiggeoRecorderModule, ZiggeoPlayerConfig as ɵa, ZiggeoRecorderConfig as ɵb };
+export { ZiggeoAudioPlayerComponent, ZiggeoAudioPlayerDirective, ZiggeoAudioPlayerModule, ZiggeoAudioRecorderComponent, ZiggeoAudioRecorderDirective, ZiggeoAudioRecorderModule, ZiggeoModule, ZiggeoPlayerComponent, ZiggeoPlayerDirective, ZiggeoPlayerModule, ZiggeoRecorderComponent, ZiggeoRecorderDirective, ZiggeoRecorderModule, ZiggeoPlayerConfig as ɵa, ZiggeoRecorderConfig as ɵb, ZiggeoAudioPlayerConfig as ɵc, ZiggeoAudioRecorderConfig as ɵd };
 //# sourceMappingURL=angular-ziggeo.js.map
