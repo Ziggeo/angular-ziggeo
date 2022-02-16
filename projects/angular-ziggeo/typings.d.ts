@@ -11,5 +11,7 @@ declare namespace ZiggeoApi.V2 {
     Application: any;
     Player: any;
     Recorder: any;
+    AudioPlayer: any;
+    AudioRecorder: any;
   }
 }
